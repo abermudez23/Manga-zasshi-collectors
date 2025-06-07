@@ -1,29 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Manga Collection</title>
+    <title>Manga Zasshi Collector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { font-family: -apple-system, sans-serif; padding: 15px; }
-        .magazine { background: #fff; border-radius: 10px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .magazine img { width: 100%; border-radius: 5px; }
-        .magazine h3 { margin: 10px 0 5px; }
-        .magazine p { color: #666; }
+        /* Main styles */
+        body {
+          font-family: -apple-system, sans-serif;
+          background: #f8f8f8;
+          padding: 15px;
+          line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+          background: #e74c3c;
+          color: white;
+          padding: 15px;
+          border-radius: 10px;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+
+        /* Magazine grid */
+        .magazine-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          gap: 15px;
+        }
+
+        .magazine-item {
+          background: white;
+          border-radius: 10px;
+          padding: 10px;
+          box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+
+        .magazine-cover {
+          width: 100%;
+          border-radius: 5px;
+          aspect-ratio: 3/4;
+          object-fit: cover;
+        }
+
+        /* Text styles */
+        h3 {
+          margin: 10px 0 5px;
+          font-size: 16px;
+        }
+        
+        p {
+          color: #666;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+          .magazine-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
     </style>
 </head>
 <body>
-    <h1>📚 My Manga Zasshi</h1>
-    
-    <div class="magazine">
-        <img src="https://m.media-amazon.com/images/I/91a1YRhPe3L._AC_UF1000,1000_QL80_.jpg">
-        <h3>Weekly Shonen Jump #52</h3>
-        <p>December 2023</p>
-    </div>
-    
-    <div class="magazine">
-        <img src="https://m.media-amazon.com/images/I/81Q+0tWn9JL._AC_UF1000,1000_QL80_.jpg">
-        <h3>Morning #20</h3>
-        <p>November 2023</p>
+    <header>
+        <h1>📚 Manga Zasshi Collector</h1>
+    </header>
+
+    <div class="magazine-grid">
+        <div class="magazine-item">
+            <img src="https://m.media-amazon.com/images/I/91a1YRhPe3L._AC_UF1000,1000_QL80_.jpg" 
+                 class="magazine-cover" 
+                 alt="Weekly Shonen Jump">
+            <h3>Weekly Shonen Jump</h3>
+            <p>Issue #52 - Dec 2023</p>
+        </div>
+        
+        <div class="magazine-item">
+            <img src="https://m.media-amazon.com/images/I/81Q+0tWn9JL._AC_UF1000,1000_QL80_.jpg" 
+                 class="magazine-cover" 
+                 alt="Morning">
+            <h3>Morning</h3>
+            <p>Issue #20 - Nov 2023</p>
+        </div>
+        
+        <!-- Add more magazines by duplicating this block -->
+        <div class="magazine-item">
+            <img src="https://m.media-amazon.com/images/I/91hIsjFuICL._AC_UF1000,1000_QL80_.jpg" 
+                 class="magazine-cover" 
+                 alt="Shonen Magazine">
+            <h3>Shonen Magazine</h3>
+            <p>Issue #35 - Sep 2023</p>
+        </div>
     </div>
 </body>
 </html>
