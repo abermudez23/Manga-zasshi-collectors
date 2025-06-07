@@ -1,0 +1,45 @@
+/* Main styles */
+body {
+  font-family: -apple-system, sans-serif;
+  background: #f8f8f8;
+  padding: 15px;
+  line-height: 1.5;
+}
+
+/* Header */
+header {
+  background: #e74c3c;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Magazine grid */
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.magazine-item {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+}
+
+.magazine-cover {
+  width: 100%;
+  border-radius: 5px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .magazine-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
