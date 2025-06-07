@@ -34,6 +34,7 @@
           border-radius: 10px;
           padding: 10px;
           box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+          position: relative;
         }
 
         .magazine-cover {
@@ -52,7 +53,46 @@
         p {
           color: #666;
           font-size: 14px;
-          margin: 0;
+          margin: 0 0 10px;
+        }
+
+        /* Form styles */
+        .add-form {
+          background: white;
+          padding: 15px;
+          border-radius: 10px;
+          margin-top: 20px;
+        }
+
+        .add-form input {
+          width: 100%;
+          padding: 8px;
+          margin: 5px 0;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+        .add-form button {
+          background: #e74c3c;
+          color: white;
+          border: none;
+          padding: 10px;
+          width: 100%;
+          border-radius: 5px;
+          margin-top: 10px;
+          font-size: 16px;
+        }
+
+        /* Remove button */
+        .remove-btn {
+          background: #ff6b6b;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 12px;
+          width: 100%;
         }
 
         /* Responsive adjustments */
@@ -68,31 +108,82 @@
         <h1>📚 Manga Zasshi Collector</h1>
     </header>
 
-    <div class="magazine-grid">
-        <div class="magazine-item">
-            <img src="https://m.media-amazon.com/images/I/91a1YRhPe3L._AC_UF1000,1000_QL80_.jpg" 
-                 class="magazine-cover" 
-                 alt="Weekly Shonen Jump">
-            <h3>Weekly Shonen Jump</h3>
-            <p>Issue #52 - Dec 2023</p>
-        </div>
-        
-        <div class="magazine-item">
-            <img src="https://m.media-amazon.com/images/I/81Q+0tWn9JL._AC_UF1000,1000_QL80_.jpg" 
-                 class="magazine-cover" 
-                 alt="Morning">
-            <h3>Morning</h3>
-            <p>Issue #20 - Nov 2023</p>
-        </div>
-        
-        <!-- Add more magazines by duplicating this block -->
-        <div class="magazine-item">
-            <img src="https://m.media-amazon.com/images/I/91hIsjFuICL._AC_UF1000,1000_QL80_.jpg" 
-                 class="magazine-cover" 
-                 alt="Shonen Magazine">
-            <h3>Shonen Magazine</h3>
-            <p>Issue #35 - Sep 2023</p>
-        </div>
+    <div class="magazine-grid" id="magazineGrid">
+        <!-- Magazines will appear here automatically -->
     </div>
+
+    <div class="add-form">
+        <h2>Add New Magazine</h2>
+        <input type="text" id="newTitle" placeholder="Title (e.g. Weekly Shonen Jump)">
+        <input type="text" id="newIssue" placeholder="Issue (e.g. #52)">
+        <input type="text" id="newDate" placeholder="Date (e.g. Dec 2023)">
+        <input type="text" id="newCover" placeholder="Image URL (or leave blank for default)">
+        <button onclick="addNewMagazine()">Add Magazine</button>
+    </div>
+
+    <script>
+        // Sample starter data
+        let magazines = [
+            {
+                title: "Weekly Shonen Jump",
+                issue: "Issue #52",
+                date: "Dec 2023",
+                cover: "https://m.media-amazon.com/images/I/91a1YRhPe3L._AC_UF1000,1000_QL80_.jpg"
+            },
+            {
+                title: "Morning",
+                issue: "Issue #20",
+                date: "Nov 2023",
+                cover: "https://m.media-amazon.com/images/I/81Q+0tWn9JL._AC_UF1000,1000_QL80_.jpg"
+            }
+        ];
+
+        // Display all magazines
+        function showMagazines() {
+            const grid = document.getElementById('magazineGrid');
+            grid.innerHTML = '';
+            
+            magazines.forEach(mag => {
+                grid.innerHTML += `
+                    <div class="magazine-item">
+                        <img src="${mag.cover}" class="magazine-cover" alt="${mag.title}">
+                        <h3>${mag.title}</h3>
+                        <p>${mag.issue} - ${mag.date}</p>
+                        <button class="remove-btn" onclick="removeMagazine('${mag.title}')">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        // Add new magazine from form
+        function addNewMagazine() {
+            const title = document.getElementById('newTitle').value;
+            const issue = document.getElementById('newIssue').value;
+            const date = document.getElementById('newDate').value;
+            let cover = document.getElementById('newCover').value;
+            
+            if (!cover) {
+                cover = 'https://via.placeholder.com/160x240?text=No+Cover';
+            }
+            
+            magazines.push({ title, issue, date, cover });
+            showMagazines();
+            
+            // Clear form
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newIssue').value = '';
+            document.getElementById('newDate').value = '';
+            document.getElementById('newCover').value = '';
+        }
+
+        // Remove magazine
+        function removeMagazine(title) {
+            magazines = magazines.filter(mag => mag.title !== title);
+            showMagazines();
+        }
+
+        // Initialize on page load
+        window.onload = showMagazines;
+    </script>
 </body>
 </html>
