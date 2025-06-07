@@ -1,0 +1,1 @@
+# Manga-zasshi-collectors
